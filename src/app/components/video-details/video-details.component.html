@@ -1,0 +1,24 @@
+<div class="container">
+    <div>
+        <iframe [src]="videos.url | safe" width="100%" height="500"></iframe>
+    </div>
+    <form #form="ngForm" (ngSubmit)="updateVideo(videos._id,form.value)">
+        <div class="form-group" *ngIf="editTitle">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="title"
+                [(ngModel)]="videos.title">
+        </div>
+        <h3 *ngIf="!editTitle" (click)="onTitleClick()">{{videos.title}}</h3>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" name="url" class="form-control" id="url" placeholder="URL" [(ngModel)]="videos.url">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" id="description" rows="3"
+                [(ngModel)]="videos.description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deleteVideo(videos._id)">Delete</button>
+    </form>
+</div>
